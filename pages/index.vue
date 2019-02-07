@@ -4,9 +4,9 @@
       <h1>Search iTunes</h1>
       <br>
 
-      <form>
-        <v-text-field label="Artist Name"></v-text-field>
-      </form>
+      <v-form v-model="valid" @submit.prevent="submit">
+        <v-text-field label="Artist Name" v-model="artName" :rules="nameRules" required></v-text-field>
+      </v-form>
     </v-flex>
   </v-layout>
 </template>
@@ -18,8 +18,19 @@ export default {
   components: {},
   data() {
     return {
-      search: ""
+      valid: false,
+      artName: "",
+      nameRules: [
+        v => !!v || "Name is required",
+        v => v.length <= 15 || "Name must be less than 15 characters"
+      ]
     };
+  },
+  methods: {
+    submit(event) {
+      // alert("Hello world");
+      this.$router.push(`results/${this.artName}`);
+    }
   }
 };
 </script>
