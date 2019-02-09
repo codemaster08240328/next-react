@@ -10,8 +10,6 @@
           :color="purple"
         />
       </div>
-
-    {{albumData}}
     </div>
     <div v-else>
       <h3>Could Not Find Album</h3>
